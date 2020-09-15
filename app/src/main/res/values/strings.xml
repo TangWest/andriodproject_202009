@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Hi</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="main_text_1">Centigrade to Fahrenheit</string>
+    <string name="main_text_3">RESULT AREA</string>
+    <string name="main_bt_1">show</string>
+
+</resources>
