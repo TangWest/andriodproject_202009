@@ -3,7 +3,16 @@
     <string name="action_settings">Settings</string>
 
     <string name="main_text_1">Centigrade to Fahrenheit</string>
-    <string name="main_text_3">RESULT AREA</string>
-    <string name="main_bt_1">show</string>
+    <string name="main_text_2">Score Indicator</string>
+    <string name="main_btn_1">start</string>
+
+    <string name="func1_text_2">input ℃</string>
+    <string name="func1_text_3">RESULT AREA</string>
+    <string name="func1_btn_1">show</string>
+
+    <string name="func2_text_2">0</string>
+    <string name="func2_btn_1">Add 1 point</string>
+    <string name="func2_btn_2">Add 2 point</string>
+    <string name="func2_btn_3">Add 3 point</string>
 
 </resources>

@@ -19,6 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Func1Activity"/>
+        <activity
+            android:name=".Func2Activity"/>
     </application>
 
 </manifest>
