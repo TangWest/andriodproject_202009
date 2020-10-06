@@ -37,13 +37,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button func2Button = (Button) findViewById(R.id.main_btn_2);//点击第一个按钮
+        Button func2Button = (Button) findViewById(R.id.main_btn_2);
         func2Button.setOnClickListener(new View.OnClickListener() {
             Intent intent = new Intent();
 
             @Override
             public void onClick(View v) {
                 intent.setClass(MainActivity.this, Func2Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button func3Button = (Button) findViewById(R.id.main_btn_3);
+        func3Button.setOnClickListener(new View.OnClickListener() {
+            Intent intent = new Intent();
+
+            @Override
+            public void onClick(View v) {
+                intent.setClass(MainActivity.this, Func3Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button func4Button = (Button) findViewById(R.id.main_btn_4);
+        func4Button.setOnClickListener(new View.OnClickListener() {
+            Intent intent = new Intent();
+
+            @Override
+            public void onClick(View v) {
+                intent.setClass(MainActivity.this, Func4Activity.class);
                 startActivity(intent);
             }
         });

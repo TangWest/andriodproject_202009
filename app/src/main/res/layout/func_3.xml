@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/func3_text_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_text_3"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_purple"
+        android:textSize="36sp" />
+
+    <EditText
+        android:id="@+id/func3_text_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/func3_text_2"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/func3_text_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/func1_text_3"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/func3_btn_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/holo_purple"
+        android:onClick="count"
+        android:text="@string/func3_btn_1" />
+
+    <Button
+        android:id="@+id/func3_btn_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/holo_purple"
+        android:onClick="count"
+        android:text="@string/func3_btn_2" />
+
+    <Button
+        android:id="@+id/func3_btn_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/holo_purple"
+        android:onClick="count"
+        android:text="@string/func3_btn_3" />
+
+    <Button
+        android:id="@+id/func3_btn_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/holo_purple"
+        android:onClick="open"
+        android:text="@string/func3_btn_4" />
+
+</LinearLayout>
