@@ -3,6 +3,7 @@ package com.example.hi;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,6 +15,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,6 +23,8 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Func4Activity extends AppCompatActivity implements Runnable{
 
@@ -28,37 +32,78 @@ public class Func4Activity extends AppCompatActivity implements Runnable{
     double euro = 0.1255;
     double won = 171.3606;
     TextView tv2;
-
-    Handler handler = new Handler(){
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            if (msg.what == 1) {
-                String str = (String) msg.obj;
-                TextView tv4 = findViewById(R.id.func4_text_4);
-                tv4.setText(str);
-            }
-        }
-    };
+    int oneday = 86400;
+    int testtime = 5000;
+    int sum = 0;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.func_4);
         tv2 = findViewById(R.id.func4_text_2);
 
-        Thread t = new Thread(this);
-        t.start();
+        Thread thread = new Thread(this);
+        thread.start();
+
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
     }
 
+    Handler handler = new Handler(){
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 0) {
+                String str = (String) msg.obj;
+                TextView tv4 = findViewById(R.id.func4_text_4);
+                tv4.setText(str);
+                Log.i("Func4","handleMessage: mag.what==0 Thread:"+Thread.currentThread().getName());
+            }else if(msg.what == 1){
+                sum++;
+                String str = (String) msg.obj;
+                TextView tv5 = findViewById(R.id.func4_text_5);
+                tv5.setText(str+" and already updated for "+sum+" time(s).");
+                Log.i("Func4","handleMessage: mag.what==1 Thread:"+Thread.currentThread().getName());
+            }
+        }
+    };
+
     public void run(){
-        Log.i("func4","run:");
+        // 不能在主线程中请求HTTP请求 不能在主线程中延时
+        new Thread(new Runnable(){
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        new Thread(new Runnable(){
+                            @Override
+                            public void run() {
+                                showRate();
+                                showUpdateTime();
+                            }
+                        }).start();
+
+                        Log.i("Func4","run: postDelayed() Thread:"+Thread.currentThread().getName());
+                        //handler.postDelayed(this,oneday);
+                        handler.postDelayed(this,testtime);
+                    }
+                });
+            }
+        }).start();
+    }
+
+    private  void  showRate(){
+        Log.i("Func4","run showRate(): Thread:"+Thread.currentThread().getName());
         URL url = null;
+        InputStream in = null;
         try{
             url = new URL("http://www.usd-cny.com/bankofchina.htm");
             HttpURLConnection http = (HttpURLConnection)url.openConnection();
-            InputStream in = http.getInputStream();
-
+            in = http.getInputStream();
             String html = inputStream2String(in);
-
             useJsoup(html);
         }catch (MalformedURLException e){
             e.printStackTrace();
@@ -78,6 +123,7 @@ public class Func4Activity extends AppCompatActivity implements Runnable{
                 break;
             out.append(buffer,0,rsz);
         }
+        inputStream.close();
         return out.toString();
     }
 
@@ -102,8 +148,17 @@ public class Func4Activity extends AppCompatActivity implements Runnable{
 
         Log.i("Func4","useJsoup:dollar "+n3+",euro "+n1+",won "+n2);
 
-        Message msg = handler.obtainMessage(1);
+        Message msg = handler.obtainMessage(0);
         msg.obj = "Current exchange rate: dollar "+n3+" ,euro "+n1+" ,won "+n2;
+        handler.sendMessage(msg);
+    }
+
+    private void showUpdateTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+
+        Message msg = handler.obtainMessage(1);
+        msg.obj = "Last update time: "+simpleDateFormat.format(date);
         handler.sendMessage(msg);
     }
 

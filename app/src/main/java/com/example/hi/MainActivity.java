@@ -70,6 +70,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button func5Button = (Button) findViewById(R.id.main_btn_5);
+        func5Button.setOnClickListener(new View.OnClickListener() {
+            Intent intent = new Intent();
+
+            @Override
+            public void onClick(View v) {
+                intent.setClass(MainActivity.this, Func5Activity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 }

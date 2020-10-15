@@ -60,9 +60,20 @@
 
     <TextView
         android:id="@+id/func4_text_4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/func4_text_4"
+        android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/func4_text_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/func4_text_5"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="20sp" />
 </LinearLayout>

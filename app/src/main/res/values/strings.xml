@@ -6,6 +6,7 @@
     <string name="main_text_2">Score Indicator</string>
     <string name="main_text_3">Currency Exchange</string>
     <string name="main_text_4">Currency Exchange v2.0</string>
+    <string name="main_text_5">Currency List</string>
     <string name="main_btn_1">start</string>
 
     <string name="func1_text_2">input ℃</string>
@@ -31,5 +32,6 @@
     <string name="func32_btn_2">saveSP</string>
 
     <string name="func4_text_4">Current exchange rate loading...</string>
+    <string name="func4_text_5">Last update time loading...</string>
 
 </resources>

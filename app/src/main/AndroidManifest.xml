@@ -14,7 +14,9 @@
         <activity android:name=".Func2Activity" />
         <activity android:name=".Func3Activity" />
         <activity android:name=".Func32Activity"/>
-        <activity android:name=".Func4Activity">
+        <activity android:name=".Func4Activity"/>
+        <activity android:name=".Func5Activity"/>
+        <activity android:name=".Func52Activity">
         </activity>
         <activity
             android:name=".MainActivity"
